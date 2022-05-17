@@ -1,0 +1,47 @@
+.container {
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.todo {
+  // .todo__form
+
+  &__form {
+    width: 100%;
+  }
+
+  // .todo__block
+
+  &__block {
+    max-width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // .todo__input-field
+
+  &__input-field {
+    flex: 0 1 60%;
+    height: 10vh;
+    margin-right: 5px;
+    outline: none;
+    border-radius: 15px;
+    font-size: 30px;
+    padding-left: 15px;
+  }
+
+  // .todo__button-add
+
+  &__button-add {
+    flex: 0 1 10vh;
+    font-size: 45px;
+    height: 10vh;
+    line-height: 10vh;
+    text-align: center;
+    background-color: #c2edce;
+    border-radius: 15%;
+    cursor: pointer;
+  }
+}

@@ -1,9 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import TodoTasks from './TodoTasks/TodoTasks';
 
 function App() {
-  return (
+  
  
+  return (
+    <div className='app'>
+      <h1 className='app__header'>TO DO</h1>
+      <TodoTasks />
+    </div>
+
   );
 }
 

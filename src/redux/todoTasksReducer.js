@@ -10,13 +10,15 @@ export const todoTaskReducer = (state = initialState, action) => {
         case INPUT_TASK_TEXT:
             return {
                 
-                ...state,
+                ...state,   
                 taskText: action.text
             }
         case CREATE_TASK:
+            
             return {
                 
-                // ...state,
+                ...state,
+                
                 tasksQueue: [...state.tasksQueue, action.task]
                 
             }

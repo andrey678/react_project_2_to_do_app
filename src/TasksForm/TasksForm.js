@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import './TodoTasks.scss';
+import './TasksForm.scss';
 
 import { createTask, inputTaskText } from '../redux/actions';
 import Task from '../Task/Task';
 
-function TodoTasks() {
+function TasksForm() {
     // Получение состояния из Redux
     const text = useSelector(state => state.todoTasksReducer.taskText);
     const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
@@ -49,4 +49,4 @@ function TodoTasks() {
     );
 }
 
-export default TodoTasks;
+export default TasksForm;

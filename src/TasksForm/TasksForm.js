@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import './TasksForm.scss';
 
 import { createTask, inputTaskText } from '../redux/actions';
-import Task from '../Task/Task';
+
 
 function TasksForm() {
     // Получение состояния из Redux
     const text = useSelector(state => state.todoTasksReducer.taskText);
-    const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
-
-
+    
     // Отправка действий(actions) в функцию reducer
     const dispatch = useDispatch();
 
@@ -42,7 +40,6 @@ function TasksForm() {
                         <input type="submit" hidden />
                     </div>
                 </form>
-                {!!tasks.length && tasks.map(task => <Task key={task.id} data={task} />)}
             </div>
         </div>
 

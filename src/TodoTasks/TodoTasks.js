@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+
 import './TodoTasks.scss';
 
 import { createTask, inputTaskText } from '../redux/actions';
@@ -6,8 +7,8 @@ import Task from '../Task/Task';
 
 function TodoTasks() {
     // Получение состояния из Redux
-    const text = useSelector(state => state.todoTaskReducer.taskText);
-    const tasks = useSelector(state => state.todoTaskReducer.tasksQueue);
+    const text = useSelector(state => state.todoTasksReducer.taskText);
+    const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
 
 
     // Отправка действий(actions) в функцию reducer

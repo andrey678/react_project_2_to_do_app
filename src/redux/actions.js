@@ -1,7 +1,9 @@
 import {
     INPUT_TASK_TEXT,
-    CREATE_TASK, EDIT_TASK,
+    CREATE_TASK,
+    EDIT_TASK,
     UPDATE_TASK,
+    DELETE_TASK,
     ADD_DRAFT_TASK_TEXT,
     EDIT_DRAFT_TASK_TEXT
 } from "./types";
@@ -30,6 +32,12 @@ export function updateTask(id, text) {
     return {
         type: UPDATE_TASK,
         task: { id, text }
+    }
+}
+export function deleteTask(id) {
+    return {
+        type: DELETE_TASK,
+        task: { id }
     }
 }
 

@@ -17,9 +17,9 @@ function TaskInput(props) {
     // const show = <p></p>;
     // const handleClick = () => dispatch(editTask(id));
     // const handleChange = (event) => setTempValue(event.target.value);
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [props.data.editing]);
+    // }, [props.data.editing]);
     return (
         <>
 

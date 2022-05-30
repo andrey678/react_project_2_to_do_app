@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import './Task.scss';
-import { updateTask, editTask, addDraftTaskText, editDraftTaskText } from '../redux/actions';
+import { updateTask, editTask, addDraftTaskText, editDraftTaskText, deleteTask } from '../redux/actions';
 import TaskInput from "../TaskInput/TaskInput";
 
 
@@ -22,10 +22,12 @@ function Task(props) {
         dispatch(updateTask(data.id.value, data.text.value));
         dispatch(editTask(id));
     };
+    // Вход в режим редактирования (изменение состояния поля editing у задания)
     const handleClickEdit = () => dispatch(editTask(id));
-
+    // Редактирование задания (изменение состояния поля draftText)
     const handleDraftTaskTextChange = event => dispatch(editDraftTaskText(event.target.value));
-
+    // Удаление задания
+    const handleDelete = () => dispatch(deleteTask(id));
     return (
         <div className="task">
             <form
@@ -42,7 +44,7 @@ function Task(props) {
                             handleChange={handleDraftTaskTextChange}
                         />
                         <button onClick={handleClickEdit} type="button">Редактировать</button>
-                        <button type="button">Удалить</button>
+                        <button onClick={handleDelete} type="button">Удалить</button>
                     </lable>
 
                     <input type="submit" hidden />

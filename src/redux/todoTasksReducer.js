@@ -3,6 +3,7 @@ import {
     CREATE_TASK,
     EDIT_TASK,
     UPDATE_TASK,
+    DELETE_TASK,
     ADD_DRAFT_TASK_TEXT,
     EDIT_DRAFT_TASK_TEXT
 } from "./types";
@@ -42,6 +43,11 @@ export const todoTasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasksQueue: state.tasksQueue.map(task => task.id === action.task.id ? { ...task, taskText: action.task.text } : task)
+            }
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasksQueue: state.tasksQueue.filter(task => task.id !== action.task.id)
             }
         case ADD_DRAFT_TASK_TEXT:
             return {

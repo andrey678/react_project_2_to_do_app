@@ -7,8 +7,9 @@ import { createTask, inputTaskText } from '../redux/actions';
 
 function TasksForm() {
     // Получение состояния из Redux
-    const text = useSelector(state => state.todoTasksReducer.taskText);
-    
+    const { taskText, completed, editing } = useSelector(state => state.todoTasksReducer);
+
+
     // Отправка действий(actions) в функцию reducer
     const dispatch = useDispatch();
 
@@ -20,9 +21,9 @@ function TasksForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         let taskId = Math.random().toString();
-        if (text.trim().length) {
-            const modifiedText = text.trim();
-            dispatch(createTask(taskId, modifiedText));
+        if (taskText.trim().length) {
+            const modifiedText = taskText.trim();
+            dispatch(createTask(taskId, modifiedText, completed, editing));
         }
 
         document.forms['add_todo_task'].reset();

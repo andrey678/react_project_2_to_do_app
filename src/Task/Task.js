@@ -1,28 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import './Task.scss';
-import { updateTask, inputTaskText } from '../redux/actions';
+import { updateTask, editTask, addDraftTaskText, editDraftTaskText } from '../redux/actions';
+import TaskInput from "../TaskInput/TaskInput";
 
 
 function Task(props) {
-    const { id, text } = props.data;
-    const modifiedText = useSelector(state => state.todoTasksReducer.taskText);
-    console.log(modifiedText);
+    // let tempText = useSelector(state => state.todoTasksReducer.draftTaskText);
+    let { id, text, completed, editing } = props.data;
+    // console.log('temptext ', tempText);
+
+    // console.log('task props', props);
     const dispatch = useDispatch();
+    // dispatch(addDraftTaskText(props.data.text));
+    console.log('task props', props);
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        console.log('TASK FORM', event.target.elements);
+        let data = event.target.elements;
 
-
-    const handleUpdate = () => {
-        dispatch(updateTask(id, modifiedText));
+        dispatch(updateTask(data.id.value, data.text.value));
+        dispatch(editTask(id));
     };
+    const handleClickEdit = () => dispatch(editTask(id));
+
+    const handleDraftTaskTextChange = event => dispatch(editDraftTaskText(event.target.value));
 
     return (
         <div className="task">
-            <form onSubmit={handleUpdate} className='task__form' name="task">
+            <form
+                onSubmit={handleUpdate}
+                className='task__form'
+                name="task"
+            >
                 <div className="task__block">
                     <lable className="task__label">
                         <input type="checkbox" />
-                        {text}
-                        <button type="button">Редактировать</button>
+                        <TaskInput
+                            data={props.data}
+                            // tempText={tempText}
+                            handleChange={handleDraftTaskTextChange}
+                        />
+                        <button onClick={handleClickEdit} type="button">Редактировать</button>
                         <button type="button">Удалить</button>
                     </lable>
 

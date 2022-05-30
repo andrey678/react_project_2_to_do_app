@@ -1,14 +1,22 @@
-import { INPUT_TASK_TEXT, CREATE_TASK, UPDATE_TASK } from "./types";
+import {
+    INPUT_TASK_TEXT,
+    CREATE_TASK,
+    EDIT_TASK,
+    UPDATE_TASK,
+    ADD_DRAFT_TASK_TEXT,
+    EDIT_DRAFT_TASK_TEXT
+} from "./types";
 
 const initialState = {
     taskText: '',
     tasksQueue: [],
     completed: false,
-    editing: false
+    editing: false,
+    draftTaskText: ''
 
 }
 export const todoTasksReducer = (state = initialState, action) => {
-    console.log(state);
+    console.log('task reducer', state);
     switch (action.type) {
         case INPUT_TASK_TEXT:
             return {
@@ -25,12 +33,26 @@ export const todoTasksReducer = (state = initialState, action) => {
                 tasksQueue: [...state.tasksQueue, action.task]
 
             }
-        case UPDATE_TASK:
-            return{
+        case EDIT_TASK:
+            return {
                 ...state,
-                tasksQueue: state.tasksQueue.map( task => task.id === action.data.id ? {...task, taskText: action.data.text } : task )
+                tasksQueue: state.tasksQueue.map(task => task.id === action.task.id ? { ...task, editing: !task.editing } : task)
             }
-
+        case UPDATE_TASK:
+            return {
+                ...state,
+                tasksQueue: state.tasksQueue.map(task => task.id === action.task.id ? { ...task, taskText: action.task.text } : task)
+            }
+        case ADD_DRAFT_TASK_TEXT:
+            return {
+                ...state,
+                draftTaskText: action.text
+            }
+        case EDIT_DRAFT_TASK_TEXT:
+            return {
+                ...state,
+                draftTaskText: action.text
+            }
         default:
             return state;
     }

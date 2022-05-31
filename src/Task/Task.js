@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import './Task.scss';
-import { updateTask, editTask, addDraftTaskText, editDraftTaskText, deleteTask } from '../redux/actions';
+import { updateTask, editTask, addDraftTaskText, editDraftTaskText, deleteTask, toggleTask } from '../redux/actions';
 import TaskInput from "../TaskInput/TaskInput";
 
 
@@ -28,6 +28,9 @@ function Task(props) {
     const handleDraftTaskTextChange = event => dispatch(editDraftTaskText(event.target.value));
     // Удаление задания
     const handleDelete = () => dispatch(deleteTask(id));
+    // Переключение состояния input
+    const toggleInput = () => dispatch(toggleTask(id));
+
     return (
         <div className="task">
             <form
@@ -36,17 +39,18 @@ function Task(props) {
                 name="task"
             >
                 <div className="task__block">
-                    <lable className="task__label">
-                        <input type="checkbox" />
-                        <TaskInput
+                
+                    <lable className="task__label" for={props.data.id}>
+                    <input onChange={toggleInput} className="task__check-input" type="checkbox" id={props.data.id}/>
+                    <TaskInput
                             data={props.data}
                             // tempText={tempText}
                             handleChange={handleDraftTaskTextChange}
                         />
-                        <button onClick={handleClickEdit} type="button">Редактировать</button>
-                        <button onClick={handleDelete} type="button">Удалить</button>
                     </lable>
-
+                    
+                    <button onClick={handleClickEdit} type="button">Редактировать</button>
+                        <button onClick={handleDelete} type="button">Удалить</button>
                     <input type="submit" hidden />
                 </div>
             </form>

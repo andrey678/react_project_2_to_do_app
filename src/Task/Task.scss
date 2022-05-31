@@ -1,8 +1,8 @@
 .task {
   // .task__form
 
-  &__form {
-  }
+  // &__form {
+  // }
 
   // .task__block
 
@@ -15,22 +15,59 @@
   // .task__label
 
   &__label {
-    
     background: #ffffff;
     width: 80vh;
     height: 7vh;
-    padding: 7px 7px;
-    outline: none;
-    resize: none;
+    padding: 7px 2em;
+    word-wrap: break-word;
     font-size: 20px;
     border: none;
     border-bottom: 1px solid lightgrey;
-    &:focus {
-      background-color: rgb(104, 255, 169);
-    }
-    
+
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   display: inline-block;
+    //   // vertical-align: middle;
+    //   margin-top: 0.1em;
+    //   margin-left: -1.7em;
+
+    //   width: 1.5em;
+    //   height: 1.5em;
+    //   box-shadow: 0 0 0 0.1em lightcoral;
+    //   border-radius: 50%;
+    //   background-color: #ffffff;
+    // }
+  }
+  // .task__check-input
+
+  &__check-input:checked + span {
+    text-decoration: line-through;
+  //   appearance: none;
+  //   position: absolute;
   }
 
+  // .task__check-box
+
+  // &__check-box {
+  //   position: absolute;
+  //   display: inline-block;
+  //   margin-top: 0.1em;
+  //   margin-left: -1.5em;
+  //   width: 1.5em;
+  //   height: 1.5em;
+  //   box-shadow: 0 0 0 0.1em lightcoral;
+  //   border-radius: 50%;
+  //   background-color: #ffffff;
+  // }
+
+  //CHECKED
+  // &__check-input:checked + &__label::before {
+  //   // position: absolute;
+  //   background-color: black;
+
+  // background: url('../../public/check.png') 0 0 / cover no-repeat;
+  // }
   // .task__input-field
 
   // &__input-field {

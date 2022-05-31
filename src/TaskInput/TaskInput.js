@@ -36,8 +36,10 @@ function TaskInput(props) {
                         // value={tempValue} 
                         // onChange={handleChange}
                         name="text"
+                        
                         defaultValue={props.data.taskText}
                         onChange={props.handleChange}
+                        
                     />
                     <button
                         type="submit"
@@ -46,7 +48,7 @@ function TaskInput(props) {
                 </>
                 :
                 <>
-                    {props.data.taskText}
+                    <span>{props.data.taskText}</span>
                 </>}
         </>
     );

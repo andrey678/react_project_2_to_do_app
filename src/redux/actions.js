@@ -4,6 +4,7 @@ import {
     EDIT_TASK,
     UPDATE_TASK,
     DELETE_TASK,
+    TOGGLE_TASK,
     ADD_DRAFT_TASK_TEXT,
     EDIT_DRAFT_TASK_TEXT
 } from "./types";
@@ -24,7 +25,7 @@ export function createTask(id, taskText, completed, editing) {
 export function editTask(id) {
     return {
         type: EDIT_TASK,
-        task: { id }
+        id
     }
 }
 
@@ -37,7 +38,13 @@ export function updateTask(id, text) {
 export function deleteTask(id) {
     return {
         type: DELETE_TASK,
-        task: { id }
+        id
+    }
+}
+export function toggleTask(id) {
+    return {
+        type: TOGGLE_TASK,
+        id
     }
 }
 

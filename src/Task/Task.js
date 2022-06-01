@@ -39,18 +39,23 @@ function Task(props) {
                 name="task"
             >
                 <div className="task__block">
-                
-                    <lable className="task__label" for={props.data.id}>
-                    <input onChange={toggleInput} className="task__check-input" type="checkbox" id={props.data.id}/>
-                    <TaskInput
+
+                    <lable className="task__label" htmlFor={id}>
+                        <input onChange={toggleInput}
+                            checked={completed}
+                            className="task__check-input"
+                            type="checkbox"
+                            id={id}
+                        />
+                        <TaskInput
                             data={props.data}
                             // tempText={tempText}
                             handleChange={handleDraftTaskTextChange}
                         />
                     </lable>
-                    
+
                     <button onClick={handleClickEdit} type="button">Редактировать</button>
-                        <button onClick={handleDelete} type="button">Удалить</button>
+                    <button onClick={handleDelete} type="button">Удалить</button>
                     <input type="submit" hidden />
                 </div>
             </form>

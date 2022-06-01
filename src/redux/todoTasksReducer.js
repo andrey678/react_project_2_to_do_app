@@ -6,7 +6,10 @@ import {
     DELETE_TASK,
     TOGGLE_TASK,
     ADD_DRAFT_TASK_TEXT,
-    EDIT_DRAFT_TASK_TEXT
+    EDIT_DRAFT_TASK_TEXT,
+    SHOW_COMPLETED_TASKS,
+    SHOW_UNCOMPLETED_TASKS,
+    SHOW_ALL_TASKS
 } from "./types";
 
 const initialState = {
@@ -14,7 +17,8 @@ const initialState = {
     tasksQueue: [],
     completed: false,
     editing: false,
-    draftTaskText: ''
+    draftTaskText: '',
+    filteredTasks: []
 
 }
 export const todoTasksReducer = (state = initialState, action) => {
@@ -64,6 +68,21 @@ export const todoTasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 draftTaskText: action.text
+            }
+        case SHOW_COMPLETED_TASKS:
+            return {
+                ...state,
+                filteredTasks: state.tasksQueue.slice(0).filter(task => task.completed)//ИСПРАВИТЬ
+            }
+        case SHOW_UNCOMPLETED_TASKS:
+            return {
+                ...state,
+                filteredTasks: state.tasksQueue.slice(0).filter(task => !task.completed)//ИСПРАВИТЬ
+            }
+        case SHOW_ALL_TASKS:
+            return {
+                ...state,
+                filteredTasks: state.tasksQueue.slice(0).filter(task => task)//ИСПРАВИТЬ
             }
         default:
             return state;

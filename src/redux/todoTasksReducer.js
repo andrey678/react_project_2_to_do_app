@@ -33,11 +33,8 @@ export const todoTasksReducer = (state = initialState, action) => {
         case CREATE_TASK:
 
             return {
-
                 ...state,
-
                 tasksQueue: [...state.tasksQueue, action.task]
-
             }
         case EDIT_TASK:
             return {
@@ -72,17 +69,17 @@ export const todoTasksReducer = (state = initialState, action) => {
         case SHOW_COMPLETED_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => task.completed)//ИСПРАВИТЬ
+                filteredTasks: state.tasksQueue.slice(0).filter(task => task.completed)
             }
         case SHOW_UNCOMPLETED_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => !task.completed)//ИСПРАВИТЬ
+                filteredTasks: state.tasksQueue.slice(0).filter(task => !task.completed)
             }
         case SHOW_ALL_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => task)//ИСПРАВИТЬ
+                filteredTasks: state.tasksQueue.slice(0).filter(task => task)
             }
         default:
             return state;

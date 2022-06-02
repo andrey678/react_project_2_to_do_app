@@ -6,8 +6,9 @@ function TaskList(){
 
     return (
         <div className="container">
-            {!!filteredTasks.length && tasks.map(task => <Task key={task.id} data={task} />) ||
+            {!!filteredTasks.length && filteredTasks.map(task => <Task key={task.id} data={task} />) ||
             !!tasks.length && tasks.map(task => <Task key={task.id} data={task} />)}
+            
         </div>
     );
 }

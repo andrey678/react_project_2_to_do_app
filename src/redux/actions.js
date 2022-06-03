@@ -9,7 +9,9 @@ import {
     EDIT_DRAFT_TASK_TEXT,
     SHOW_COMPLETED_TASKS,
     SHOW_UNCOMPLETED_TASKS,
-    SHOW_ALL_TASKS
+    SHOW_ALL_TASKS,
+    DELETE_COMPLETED_TASKS,
+    DELETE_ALL_TASKS
 } from "./types";
 
 export function inputTaskText(text) {
@@ -64,21 +66,31 @@ export function editDraftTaskText(text) {
     }
 }
 
-export function showCompletedTasks() {
+export function showCompletedTasks(status) {
     return {
-        type: SHOW_COMPLETED_TASKS
-        
+        type: SHOW_COMPLETED_TASKS,
+        status
     }
 }
-export function showUncompletedTasks() {
+export function showUncompletedTasks(status) {
     return {
-        type: SHOW_UNCOMPLETED_TASKS
-        
+        type: SHOW_UNCOMPLETED_TASKS,
+        status
     }
 }
-export function showAllTasks() {
+export function showAllTasks(status) {
     return {
-        type: SHOW_ALL_TASKS
-        
+        type: SHOW_ALL_TASKS,
+        status
+    }
+}
+export function deleteCompletedTasks() {
+    return {
+        type: DELETE_COMPLETED_TASKS
+    }
+}
+export function deleteAllTasks() {
+    return {
+        type: DELETE_ALL_TASKS
     }
 }

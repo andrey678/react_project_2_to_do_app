@@ -9,7 +9,9 @@ import {
     EDIT_DRAFT_TASK_TEXT,
     SHOW_COMPLETED_TASKS,
     SHOW_UNCOMPLETED_TASKS,
-    SHOW_ALL_TASKS
+    SHOW_ALL_TASKS,
+    DELETE_COMPLETED_TASKS,
+    DELETE_ALL_TASKS
 } from "./types";
 
 const initialState = {
@@ -18,20 +20,18 @@ const initialState = {
     completed: false,
     editing: false,
     draftTaskText: '',
-    filteredTasks: []
 
+    statusFilter: 'all'
 }
 export const todoTasksReducer = (state = initialState, action) => {
     console.log('task reducer', state);
     switch (action.type) {
         case INPUT_TASK_TEXT:
             return {
-
                 ...state,
                 taskText: action.text
             }
         case CREATE_TASK:
-
             return {
                 ...state,
                 tasksQueue: [...state.tasksQueue, action.task]
@@ -54,7 +54,7 @@ export const todoTasksReducer = (state = initialState, action) => {
         case TOGGLE_TASK:
             return {
                 ...state,
-                tasksQueue: state.tasksQueue.map(task => task.id == action.id ? { ...task, completed: !task.completed } : task)
+                tasksQueue: state.tasksQueue.map(task => task.id === action.id ? { ...task, completed: !task.completed } : task)
             }
         case ADD_DRAFT_TASK_TEXT:
             return {
@@ -69,20 +69,29 @@ export const todoTasksReducer = (state = initialState, action) => {
         case SHOW_COMPLETED_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => task.completed)
+                statusFilter: action.status
             }
         case SHOW_UNCOMPLETED_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => !task.completed)
+                statusFilter: action.status
             }
         case SHOW_ALL_TASKS:
             return {
                 ...state,
-                filteredTasks: state.tasksQueue.slice(0).filter(task => task)
+                statusFilter: action.status
+            }
+        case DELETE_COMPLETED_TASKS:
+            return {
+                ...state,
+                tasksQueue: state.tasksQueue.slice(0).filter(task => !task.completed)
+            }
+        case DELETE_ALL_TASKS:
+            return {
+                ...state,
+                tasksQueue: []
             }
         default:
             return state;
     }
-
 }

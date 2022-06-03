@@ -8,9 +8,9 @@ function TaskInput(props) {
     // tempValue = props.data.text;
     // console.log('temp', tempValue);
     const { id } = props.data;
-    const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
-    const editingTask = tasks.filter( task => task.id === id)[0].editing;
-    console.log(editingTask);
+    // const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
+    // const editingTask = tasks.filter( task => task.id === id)[0].editing;
+    // console.log(editingTask);
     const dispatch = useDispatch();
 
     // const editing = <input />;

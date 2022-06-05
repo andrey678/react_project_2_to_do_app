@@ -1,14 +1,15 @@
 .container {
-  width: 60vw;
+  width: 70vw;
   margin: 0 auto;
 }
 
 .todo {
+  margin-bottom: 20px;
   // .todo__form
 
   &__form {
     width: 100%;
-    margin-bottom: 10px;
+    
   }
 
   // .todo__block
@@ -27,22 +28,16 @@
     flex: 0 1 60%;
     height: 10vh;
     margin-right: 5px;
-    outline: none;
     border-radius: 15px;
     font-size: 30px;
     padding-left: 15px;
+    &:focus{
+      // background: #e2f0f9;
+      box-shadow: 0 0 5px 2px yellow;
+    }
   }
 
-  // .todo__button-add
 
-  &__button-add {
-    flex: 0 1 10vh;
-    font-size: 45px;
-    height: 10vh;
-    line-height: 10vh;
-    text-align: center;
-    background-color: #c2edce;
-    border-radius: 15%;
-    cursor: pointer;
-  }
+
+  
 }

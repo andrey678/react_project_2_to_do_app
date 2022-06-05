@@ -1,0 +1,79 @@
+.tasksfilter {
+  margin-bottom: 30px;
+  // .tasksfilter__wrapper
+
+  &__wrapper {
+    max-width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // .tasksfilter__filters-group
+
+  &__filters-group {
+  }
+
+  // .tasksfilter__btn
+
+  &__btn {
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease-out 0s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+    // .tasksfilter__btn_all-tasks
+
+    &_all-tasks {
+      background: lightblue;
+    }
+
+    // .tasksfilter__btn_completed-tasks
+
+    &_completed-tasks {
+      background: palegreen;
+    }
+
+    // .tasksfilter__btn_uncompleted-tasks
+
+    &_uncompleted-tasks {
+      background: rgb(255, 240, 78);
+    }
+  }
+
+  // .tasksfilter__removers-group
+
+  &__removers-group {
+  }
+
+  // .tasksfilter__delete-btn
+
+  &__delete-btn {
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease-out 0s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    // .tasksfilter__delete-btn_completed
+
+    &_completed {
+      margin-right: 10px;
+      background: rgb(255, 113, 137);
+    }
+
+    // .tasksfilter__delete-btn_all
+
+    &_all {
+      background: crimson;
+      color: #ffffff;
+    }
+  }
+}

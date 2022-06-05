@@ -29,7 +29,7 @@ function TasksForm() {
         document.forms['add_todo_task'].reset();
     }
     return (
-        <div className="todo">
+        <section className="todo">
             <div className="container">
                 <form onSubmit={handleSubmit} className='todo__form' name="add_todo_task">
                     <div className="todo__block">
@@ -42,7 +42,7 @@ function TasksForm() {
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
 
     );
 }

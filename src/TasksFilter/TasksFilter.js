@@ -1,4 +1,12 @@
 import './TasksFilter.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrashAlt,
+    faFlagCheckered,
+    faList,
+    faListCheck,
+    faCrosshairs
+} from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import {
     showCompletedTasks,
@@ -9,7 +17,7 @@ import {
 } from '../redux/actions';
 
 function TasksFilter() {
-    
+
     const dispatch = useDispatch();
     // Показать выполненные задания
     const handleShowCompleted = () => dispatch(showCompletedTasks('completed'));
@@ -23,18 +31,51 @@ function TasksFilter() {
     const handleDeleteAll = () => dispatch(deleteAllTasks());
 
     return (
-        <div className="container">
-
-            <div className="tasks-filter">
-                <button onClick={handleShowAll} type="button" className="tasks-filter__btn">Все</button>
-                <button onClick={handleShowCompleted} type="button" className="tasks-filter__btn">Выполненные</button>
-                <button onClick={handleShowUncompleted} type="button" className="tasks-filter__btn">Не выполненные</button>
+        <section className="tasksfilter">
+            <div className="container">
+                <div className="tasksfilter__wrapper">
+                    <div className="tasksfilter__filters-group">
+                        <button
+                            onClick={handleShowAll}
+                            type="button"
+                            className="tasksfilter__btn tasksfilter__btn_all-tasks"
+                        >
+                            <FontAwesomeIcon icon={faList} /> ALL
+                        </button>
+                        <button
+                            onClick={handleShowCompleted}
+                            type="button"
+                            className="tasksfilter__btn tasksfilter__btn_completed-tasks"
+                        >
+                            <FontAwesomeIcon icon={faListCheck} /> Completed
+                        </button>
+                        <button
+                            onClick={handleShowUncompleted}
+                            type="button"
+                            className="tasksfilter__btn tasksfilter__btn_uncompleted-tasks"
+                        >
+                            <FontAwesomeIcon icon={faCrosshairs} /> Uncompleted
+                        </button>
+                    </div>
+                    <div className="tasksfilter__removers-group">
+                        <button
+                            onClick={handleDeleteCompleted}
+                            className='tasksfilter__delete-btn tasksfilter__delete-btn_completed'
+                            type='button'
+                        >
+                            <FontAwesomeIcon icon={faFlagCheckered} /> Delete completed
+                        </button>
+                        <button
+                            onClick={handleDeleteAll}
+                            className='tasksfilter__delete-btn tasksfilter__delete-btn_all'
+                            type='button'
+                        >
+                            <FontAwesomeIcon icon={faTrashAlt} /> DELETE ALL
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div className="tasks-remover">
-                <button onClick={handleDeleteCompleted} className='tasks-remover_btn' type='button'>Удалить выполненные задания</button>
-                <button onClick={handleDeleteAll} className='tasks-remover_btn' type='button'>Удалить все задания</button>
-            </div>
-        </div>
+        </section>
 
     );
 }

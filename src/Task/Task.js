@@ -1,6 +1,10 @@
+import './Task.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 
-import './Task.scss';
+
 import { updateTask, editTask, addDraftTaskText, editDraftTaskText, deleteTask, toggleTask } from '../redux/actions';
 import TaskInput from "../TaskInput/TaskInput";
 
@@ -18,18 +22,47 @@ function Task(props) {
         event.preventDefault();
         console.log('TASK FORM', event.target.elements);
         let data = event.target.elements;
-
+        
         dispatch(updateTask(data.id.value, data.text.value));
         dispatch(editTask(id));
     };
     // Вход в режим редактирования (изменение состояния поля editing у задания)
     const handleClickEdit = () => dispatch(editTask(id));
+        
     // Редактирование задания (изменение состояния поля draftText)
-    const handleDraftTaskTextChange = event => dispatch(editDraftTaskText(event.target.value));
+    const handleDraftTaskTextChange = event => {
+        
+        dispatch(editDraftTaskText(event.target.value));
+        
+        // let area = document.forms.task.text;
+        let areas = document.getElementsByName('text');
+        for (let area of areas){
+            
+            area.onkeyup = (event) => {
+                
+                area.style.height = "auto";
+                let scHeight = event.target.scrollHeight;
+                area.style.height = `${scHeight}px`;
+                
+            }
+        }
+        
+        // area.onkeyup = (event) => {
+        //     area.style.height = "auto";
+        //     let scHeight = event.target.scrollHeight;
+        //     area.style.height = `${scHeight}px`;
+            
+        // }
+    }
+    
     // Удаление задания
     const handleDelete = () => dispatch(deleteTask(id));
     // Переключение состояния input
     const toggleInput = () => dispatch(toggleTask(id));
+
+
+    
+
 
     return (
         <div className="task">
@@ -39,23 +72,38 @@ function Task(props) {
                 name="task"
             >
                 <div className="task__block">
+                    <div className="task__main">
+                        <lable className="task__label" htmlFor={id}>
+                            <input onChange={toggleInput}
+                                checked={completed}
+                                className="task__check-input"
+                                type="checkbox"
+                                id={id}
+                            />
+                            <TaskInput
+                                data={props.data}
+                                // tempText={tempText}
+                                handleChange={handleDraftTaskTextChange}
+                            />
+                        </lable>
+                    </div>
 
-                    <lable className="task__label" htmlFor={id}>
-                        <input onChange={toggleInput}
-                            checked={completed}
-                            className="task__check-input"
-                            type="checkbox"
-                            id={id}
-                        />
-                        <TaskInput
-                            data={props.data}
-                            // tempText={tempText}
-                            handleChange={handleDraftTaskTextChange}
-                        />
-                    </lable>
+                    <div className="task__control">
+                        <button
+                            onClick={handleClickEdit}
+                            className="task__control-btn task__control-btn_edit"
+                            type="button"
+                        >
+                            <FontAwesomeIcon icon={faPenToSquare} /> Edit
+                        </button>
+                        <button
+                            onClick={handleDelete}
+                            className="task__control-btn task__control-btn_delete"
+                            type="button"
+                        >
+                            <FontAwesomeIcon icon={faCircleXmark} /> Delete</button>
+                    </div>
 
-                    <button onClick={handleClickEdit} type="button">Редактировать</button>
-                    <button onClick={handleDelete} type="button">Удалить</button>
                     <input type="submit" hidden />
                 </div>
             </form>

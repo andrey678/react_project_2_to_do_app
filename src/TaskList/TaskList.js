@@ -1,3 +1,4 @@
+import './TaskList.scss';
 import { useSelector } from 'react-redux';
 import Task from '../Task/Task';
 function TaskList() {
@@ -29,9 +30,13 @@ function TaskList() {
         }
     }
     return (
-        <div className="container">
-            {filteredTasks(filterByStatus)}
-        </div>
+        <section className="tasklist">
+            <div className="container">
+                <div className="tasklist__wrapper">
+                    {filteredTasks(filterByStatus)}
+                </div>
+            </div>
+        </section>
     );
 }
 

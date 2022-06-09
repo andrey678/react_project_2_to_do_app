@@ -22,46 +22,47 @@ function Task(props) {
         event.preventDefault();
         console.log('TASK FORM', event.target.elements);
         let data = event.target.elements;
-        
-        dispatch(updateTask(data.id.value, data.text.value));
+
+        dispatch(updateTask(data.id.value, data.text.value.trim()));
         dispatch(editTask(id));
     };
     // Вход в режим редактирования (изменение состояния поля editing у задания)
     const handleClickEdit = () => dispatch(editTask(id));
-        
+
     // Редактирование задания (изменение состояния поля draftText)
     const handleDraftTaskTextChange = event => {
-        
         dispatch(editDraftTaskText(event.target.value));
-        
-        // let area = document.forms.task.text;
+
         let areas = document.getElementsByName('text');
-        for (let area of areas){
+        for (let area of areas) {
             
+            // После редактирования задания, при нажатии Enter, вместо перехода на новую строку
+            // происходит сохранение изменений. 
+            area.onkeydown = (event) => {
+                if (event.key === 'Enter' || event.key === 'NumpadEnter') {
+                    let data = area.form.elements;
+                    dispatch(updateTask(data.id.value, data.text.value.trim()));
+                    dispatch(editTask(id));
+                    return false;
+                }
+            }
+            
+            // Увеличение высоты текста в зависимости от набираемого текста в процессе
             area.onkeyup = (event) => {
-                
                 area.style.height = "auto";
                 let scHeight = event.target.scrollHeight;
                 area.style.height = `${scHeight}px`;
-                
             }
         }
-        
-        // area.onkeyup = (event) => {
-        //     area.style.height = "auto";
-        //     let scHeight = event.target.scrollHeight;
-        //     area.style.height = `${scHeight}px`;
-            
-        // }
     }
-    
+
     // Удаление задания
     const handleDelete = () => dispatch(deleteTask(id));
     // Переключение состояния input
     const toggleInput = () => dispatch(toggleTask(id));
 
 
-    
+
 
 
     return (
@@ -84,6 +85,7 @@ function Task(props) {
                                 data={props.data}
                                 // tempText={tempText}
                                 handleChange={handleDraftTaskTextChange}
+                                update={handleUpdate}
                             />
                         </lable>
                     </div>

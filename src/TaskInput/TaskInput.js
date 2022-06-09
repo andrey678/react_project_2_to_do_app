@@ -28,6 +28,8 @@ function TaskInput(props) {
     useEffect(() => {
         console.log('works ok');
         console.log('ELEMENTS', document.getElementsByName('text'));
+        //  Увеличение высоты всех редактируемых элементов textarea
+        //   в зависимости от количества текста, который уже внутри этих элементов textarea
         let areas = document.getElementsByName('text');
         for (let area of areas){
             
@@ -70,7 +72,9 @@ function TaskInput(props) {
                         className="task__change-text"
                         defaultValue={props.data.taskText}
                         onChange={props.handleChange}
+                        
                     />
+                    
                     <button
                         type="submit"
                         className="task__save-changes-btn"
@@ -78,6 +82,7 @@ function TaskInput(props) {
                     >
                         <FontAwesomeIcon icon={faFloppyDisk} /> Save
                     </button>
+                    
                 </>
                 :
                 <>

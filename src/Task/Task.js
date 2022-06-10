@@ -1,30 +1,40 @@
+// Стили
 import './Task.scss';
+// Иконки FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { useDispatch, useSelector } from "react-redux";
 
+// Хуки React-Redux
+import { useDispatch } from "react-redux";
 
-import { updateTask, editTask, addDraftTaskText, editDraftTaskText, deleteTask, toggleTask } from '../redux/actions';
+// Action creators
+import {
+    updateTask,
+    editTask,
+    editDraftTaskText,
+    deleteTask,
+    toggleTask
+} from '../redux/actions';
+
+// Компоненты
 import TaskInput from "../TaskInput/TaskInput";
 
 
-function Task(props) {
-    // let tempText = useSelector(state => state.todoTasksReducer.draftTaskText);
-    let { id, text, completed, editing } = props.data;
-    // console.log('temptext ', tempText);
+function Task({ taskData }) {
 
-    // console.log('task props', props);
+    let { id, completed } = taskData;
+
     const dispatch = useDispatch();
-    // dispatch(addDraftTaskText(props.data.text));
-    console.log('task props', props);
+
+    // Сохранение изменений в задании и выход из режима редактирования
     const handleUpdate = (event) => {
         event.preventDefault();
-        console.log('TASK FORM', event.target.elements);
-        let data = event.target.elements;
-
-        dispatch(updateTask(data.id.value, data.text.value.trim()));
-        dispatch(editTask(id));
+        let editedTaskForm = event.target.elements;
+        if(editedTaskForm.text.value.trim()){
+            dispatch(updateTask(editedTaskForm.id.value, editedTaskForm.text.value.trim()));
+            dispatch(editTask(id));
+        }
     };
     // Вход в режим редактирования (изменение состояния поля editing у задания)
     const handleClickEdit = () => dispatch(editTask(id));
@@ -34,19 +44,22 @@ function Task(props) {
         dispatch(editDraftTaskText(event.target.value));
 
         let areas = document.getElementsByName('text');
+
         for (let area of areas) {
-            
+
             // После редактирования задания, при нажатии Enter, вместо перехода на новую строку
             // происходит сохранение изменений. 
             area.onkeydown = (event) => {
                 if (event.key === 'Enter' || event.key === 'NumpadEnter') {
-                    let data = area.form.elements;
-                    dispatch(updateTask(data.id.value, data.text.value.trim()));
-                    dispatch(editTask(id));
+                    let modifiedTask = area.form.elements;
+                    if(modifiedTask.text.value.trim()){
+                        dispatch(updateTask(modifiedTask.id.value, modifiedTask.text.value.trim()));
+                        dispatch(editTask(id));
+                    }
                     return false;
                 }
             }
-            
+
             // Увеличение высоты текста в зависимости от набираемого текста в процессе
             area.onkeyup = (event) => {
                 area.style.height = "auto";
@@ -60,9 +73,6 @@ function Task(props) {
     const handleDelete = () => dispatch(deleteTask(id));
     // Переключение состояния input
     const toggleInput = () => dispatch(toggleTask(id));
-
-
-
 
 
     return (
@@ -82,10 +92,8 @@ function Task(props) {
                                 id={id}
                             />
                             <TaskInput
-                                data={props.data}
-                                // tempText={tempText}
+                                taskInputData={taskData}
                                 handleChange={handleDraftTaskTextChange}
-                                update={handleUpdate}
                             />
                         </lable>
                     </div>
@@ -105,8 +113,6 @@ function Task(props) {
                         >
                             <FontAwesomeIcon icon={faCircleXmark} /> Delete</button>
                     </div>
-
-                    <input type="submit" hidden />
                 </div>
             </form>
         </div>

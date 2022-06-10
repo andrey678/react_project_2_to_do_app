@@ -1,31 +1,35 @@
-import { useSelector, useDispatch } from 'react-redux';
-
+// Стили
 import './TasksForm.scss';
 
+// Хуки React Redux
+import { useSelector, useDispatch } from 'react-redux';
+
+// Action creators
 import { createTask, inputTaskText } from '../redux/actions';
 
 
 function TasksForm() {
+
     // Получение состояния из Redux
     const { taskText, completed, editing } = useSelector(state => state.todoTasksReducer);
-
 
     // Отправка действий(actions) в функцию reducer
     const dispatch = useDispatch();
 
-    // Обработчик ввода текста
+    // Обработчик ввода текста задания
     const handleChange = (event) => {
         dispatch(inputTaskText(event.target.value));
     }
-    // Обаботчик отправки формы
+    // Обаботчик создания нового задания
     const handleSubmit = (event) => {
         event.preventDefault();
         let taskId = Math.random().toString();
-        if (taskText.trim().length) {
+        // Создать
+        if (taskText.trim()) {
             const modifiedText = taskText.trim();
             dispatch(createTask(taskId, modifiedText, completed, editing));
         }
-
+        // Очистить поле
         document.forms['add_todo_task'].reset();
     }
     return (

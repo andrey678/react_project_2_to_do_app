@@ -1,6 +1,12 @@
+// Стили
 import './TaskList.scss';
+
+// Хуки React-Redux
 import { useSelector } from 'react-redux';
+
+// Компоненты
 import Task from '../Task/Task';
+
 function TaskList() {
     // Все задания
     const tasks = useSelector(state => state.todoTasksReducer.tasksQueue);
@@ -11,22 +17,18 @@ function TaskList() {
     // Получить статус filterByStatus из хранилища
     const filterByStatus = useSelector(state => state.todoTasksReducer.statusFilter);
 
-    console.log('completedTasks>>>', completedTasks);
-    console.log('uncompletedTasks>>>', uncompletedTasks);
-    console.log('tasks-->>>>', tasks);
-    console.log('statusFilter-->>>>', filterByStatus);
-
+    //    Фильтрация по состоянию выполнения заданий
     const filteredTasks = (status) => {
         switch (status) {
 
             case 'completed':
-                return !!completedTasks.length && completedTasks.map(task => <Task key={task.id} data={task} />);
+                return !!completedTasks.length && completedTasks.map(task => <Task key={task.id} taskData={task} />);
 
             case 'uncompleted':
-                return !!uncompletedTasks.length && uncompletedTasks.map(task => <Task key={task.id} data={task} />);
+                return !!uncompletedTasks.length && uncompletedTasks.map(task => <Task key={task.id} taskData={task} />);
 
             default:
-                return tasks.map(task => <Task key={task.id} data={task} />);
+                return tasks.map(task => <Task key={task.id} taskData={task} />);
         }
     }
     return (

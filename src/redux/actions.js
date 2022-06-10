@@ -5,7 +5,6 @@ import {
     UPDATE_TASK,
     DELETE_TASK,
     TOGGLE_TASK,
-    ADD_DRAFT_TASK_TEXT,
     EDIT_DRAFT_TASK_TEXT,
     SHOW_COMPLETED_TASKS,
     SHOW_UNCOMPLETED_TASKS,
@@ -20,7 +19,6 @@ export function inputTaskText(text) {
         text
     }
 }
-
 export function createTask(id, taskText, completed, editing) {
     return {
         type: CREATE_TASK,
@@ -33,7 +31,6 @@ export function editTask(id) {
         id
     }
 }
-
 export function updateTask(id, text) {
     return {
         type: UPDATE_TASK,
@@ -52,20 +49,12 @@ export function toggleTask(id) {
         id
     }
 }
-
-export function addDraftTaskText(text) {
-    return {
-        type: ADD_DRAFT_TASK_TEXT,
-        text
-    }
-}
 export function editDraftTaskText(text) {
     return {
         type: EDIT_DRAFT_TASK_TEXT,
         text
     }
 }
-
 export function showCompletedTasks(status) {
     return {
         type: SHOW_COMPLETED_TASKS,

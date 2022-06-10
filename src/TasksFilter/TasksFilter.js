@@ -1,4 +1,7 @@
+// Стили
 import './TasksFilter.scss';
+
+// Иконки FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrashAlt,
@@ -7,7 +10,11 @@ import {
     faListCheck,
     faCrosshairs
 } from '@fortawesome/free-solid-svg-icons';
+
+// Хуки React-Redux
 import { useDispatch } from 'react-redux';
+
+// Action creators
 import {
     showCompletedTasks,
     showUncompletedTasks,
@@ -19,6 +26,7 @@ import {
 function TasksFilter() {
 
     const dispatch = useDispatch();
+
     // Показать выполненные задания
     const handleShowCompleted = () => dispatch(showCompletedTasks('completed'));
     // Показать невыполненные задания

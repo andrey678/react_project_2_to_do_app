@@ -5,7 +5,6 @@ import {
     UPDATE_TASK,
     DELETE_TASK,
     TOGGLE_TASK,
-    ADD_DRAFT_TASK_TEXT,
     EDIT_DRAFT_TASK_TEXT,
     SHOW_COMPLETED_TASKS,
     SHOW_UNCOMPLETED_TASKS,
@@ -20,9 +19,9 @@ const initialState = {
     completed: false,
     editing: false,
     draftTaskText: '',
-
     statusFilter: 'all'
 }
+
 export const todoTasksReducer = (state = initialState, action) => {
     console.log('task reducer', state);
     switch (action.type) {
@@ -55,11 +54,6 @@ export const todoTasksReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasksQueue: state.tasksQueue.map(task => task.id === action.id ? { ...task, completed: !task.completed } : task)
-            }
-        case ADD_DRAFT_TASK_TEXT:
-            return {
-                ...state,
-                draftTaskText: action.text
             }
         case EDIT_DRAFT_TASK_TEXT:
             return {

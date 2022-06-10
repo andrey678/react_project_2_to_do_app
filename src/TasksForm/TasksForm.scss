@@ -29,11 +29,13 @@
     height: 10vh;
     margin-right: 5px;
     border-radius: 15px;
-    font-size: 30px;
+    font-size: 25px;
     padding-left: 15px;
+    border: 2px solid #505050;
     &:focus{
       // background: #e2f0f9;
-      box-shadow: 0 0 5px 2px yellow;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 5px 3px yellow;
     }
   }
 

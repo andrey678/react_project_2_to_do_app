@@ -37,7 +37,7 @@ function TasksForm() {
                             type="text"
                             className="todo__input-field"
                             onChange={handleChange}
-                            placeholder="Что нужно сделать?" />
+                            placeholder="What needs to be done? (Type and press 'Enter')" />
                         <input type="submit" hidden />
                     </div>
                 </form>

@@ -8,7 +8,10 @@ function App() {
 
   return (
     <div className='app'>
-      <h1 className='app__header'>TO DO LIST</h1>
+      <div className="app__header-wrapper">
+        <h1 className='app__header'>TO DO LIST</h1>
+      </div>
+
       <TasksForm />
       <TasksFilter />
       <TaskList />

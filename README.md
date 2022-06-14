@@ -1,4 +1,5 @@
 # react_project_2_to_do_app
+[![Netlify Status](https://api.netlify.com/api/v1/badges/071fda41-bcd7-4c5d-8712-03f098b96b45/deploy-status)](https://app.netlify.com/sites/react-project-2-to-do-app/deploys)
 
 # Getting Started with Create React App
 
